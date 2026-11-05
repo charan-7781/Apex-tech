@@ -1,0 +1,14 @@
+# Web application user interface
+streamlit>=1.30.0
+
+# OpenAI API client to talk to GPT models
+openai>=1.0.0
+
+# Manages secret keys (like API keys) safely from a .env file
+python-dotenv>=1.0.0
+
+# Formats Markdown inside custom HTML chat bubbles
+markdown>=3.5.0
+
+# Google Gemini AI SDK
+google-genai>=2.0.0
