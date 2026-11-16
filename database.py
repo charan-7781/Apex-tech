@@ -120,17 +120,49 @@ def init_db():
     # 3. Store Policies / FAQs with Indian Rupee (₹) and Logistics Details
     cursor.execute("DELETE FROM faqs")
     sample_faqs = [
-        ("Returns & Refunds", "What is your return policy?", "We offer a 7-day replacement/return guarantee on all electronic items. Free reverse pickup is arranged across India via Delhivery/Bluedart, and refunds are processed to your original payment method or UPI within 3-5 business days."),
-        ("Shipping & Delivery", "How long does shipping take and what are the rates?", "Pan-India standard delivery takes 2-4 business days. Shipping is completely FREE on all orders above ₹499. Express 1-2 day delivery is available in major metro cities for ₹99."),
-        ("Product Warranty & GST", "Do products include GST invoice and warranty?", "Yes! Every order includes an official GST tax invoice. All electronic items come with a 1-year brand warranty valid at authorized service centers across India."),
-        ("Payment Methods", "What payment options are available?", "We support all major payment methods: UPI (Google Pay, PhonePe, Paytm), Credit & Debit cards, Net Banking, and Cash on Delivery (COD) for orders up to ₹5,000."),
-        ("Price Match Guarantee", "Do you price match other Indian retailers?", "Yes! We match lower advertised prices from authorized Indian retailers (Amazon India, Flipkart, Croma) within 7 days of your purchase."),
-        ("Customer Support Contact", "How do I speak with a customer care representative?", "You can email care@apextech.in or call our toll-free helpline at 1800-266-0199 Monday to Saturday from 9:30 AM to 6:30 PM IST.")
-    ]
-    cursor.executemany("""
-        INSERT INTO faqs (topic, question, answer)
-        VALUES (?, ?, ?)
-    """, sample_faqs)
+    (
+        "Returns & Refunds",
+        "What is your return policy?",
+        "We offer a 7-day replacement/return guarantee on all electronic items. "
+        "Free reverse pickup is arranged across India via Delhivery/Bluedart, "
+        "and refunds are processed to your original payment method or UPI "
+        "within 3-5 business days."
+    ),
+    (
+        "Shipping & Delivery",
+        "How long does shipping take and what are the rates?",
+        "Pan-India standard delivery takes 2-4 business days. "
+        "Standard shipping is FREE on orders above ₹499. "
+        "Orders below ₹499 have a standard shipping fee of ₹50. "
+        "Express 1-2 day delivery is available in major metro cities for ₹99."
+    ),
+    (
+        "Product Warranty & GST",
+        "Do products include GST invoice and warranty?",
+        "Yes! Every order includes an official GST tax invoice. "
+        "All electronic items come with a 1-year brand warranty "
+        "valid at authorized service centers across India."
+    ),
+    (
+        "Payment Methods",
+        "What payment options are available?",
+        "We support UPI (Google Pay, PhonePe, Paytm), Credit & Debit cards, "
+        "Net Banking, and Cash on Delivery (COD) for orders up to ₹5,000. "
+        "The COD handling fee is not specified in our current policy information."
+    ),
+    (
+        "Price Match Guarantee",
+        "Do you price match other Indian retailers?",
+        "Yes! We match lower advertised prices from authorized Indian "
+        "retailers (Amazon India, Flipkart, Croma) within 7 days of your purchase."
+    ),
+    (
+        "Customer Support Contact",
+        "How do I speak with a customer care representative?",
+        "You can email care@apextech.in or call our toll-free helpline "
+        "at 1800-266-0199 Monday to Saturday from 9:30 AM to 6:30 PM IST."
+    )
+]
 
     conn.commit()
     conn.close()
@@ -184,6 +216,7 @@ def get_all_faqs():
     cursor.execute("SELECT * FROM faqs")
     rows = cursor.fetchall()
     conn.close()
+    return [dict(row) for row in rows]
 def get_all_orders():
     """Retrieves all orders from the database."""
     conn = get_connection()

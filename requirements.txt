@@ -1,6 +1,9 @@
 # Web application user interface
 streamlit>=1.30.0
 
+# Data analysis and chart dataframes
+pandas>=2.0.0
+
 # OpenAI API client to talk to GPT models
 openai>=1.0.0
 
@@ -9,6 +12,9 @@ python-dotenv>=1.0.0
 
 # Formats Markdown inside custom HTML chat bubbles
 markdown>=3.5.0
+
+# Google Protobuf dependency for Streamlit
+protobuf>=5.0.0
 
 # Google Gemini AI SDK
 google-genai>=2.0.0
